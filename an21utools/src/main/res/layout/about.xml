@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="4px">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Вобщ0ем тут еще много напишут"
+            android:id="@+id/textView"
+            android:layout_gravity="center"/>
+    <Button android:id="@+id/AboutTest"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Тестовый запуск приложений"
+            />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Log"
+            android:id="@+id/textViewDebug"
+            android:editable="false"
+            android:enabled="false"/>
+
+
+</LinearLayout>

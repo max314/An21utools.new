@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Утилиты для ГУ an21u</string>
+    <string name="app_version">2.0.4</string>
+    <string name="musicwidget_play_name">Кнопка:Play</string>
+    <string name="musicwidget_pause_name">Кнопка:Pause</string>
+    <string name="musicwidget_playpause_name">Кнопка:PlayPause</string>
+    <string name="musicwidget_next_name">Кнопка:Next</string>
+    <string name="musicwidget_prev_name">Кнопка:Prev</string>
+    <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
+</resources>

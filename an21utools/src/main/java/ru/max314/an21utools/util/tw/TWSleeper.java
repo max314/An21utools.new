@@ -30,6 +30,11 @@ public class TWSleeper extends TWUtilDecorator {
         // не нужно так делать
 
         handler = new Handler(){
+            // Для того чтобы не слать два раза бродкаст - мы проснулись
+            // заводим переменую
+            // Игнрорировать следующий приход 514 - 3.0
+            private boolean ignoreNextWakeUp = false;
+
             @Override
             public void handleMessage(Message msg) {
                 Log.d("Handle message from TWutil: "+ dumpMessage(msg));
@@ -39,9 +44,15 @@ public class TWSleeper extends TWUtilDecorator {
                             switch (msg.arg2){
                                 case 1: // Уход в слип
                                     createAndSayIntent(BRD_TAG_SLEEP);
+                                    ignoreNextWakeUp = false; // просыпания без сна не бывает)
                                     break;
                                 case 0:
-                                    createAndSayIntent(BRD_TAG_WAKEUP);
+                                    if (!ignoreNextWakeUp){
+                                        createAndSayIntent(BRD_TAG_WAKEUP);
+                                        ignoreNextWakeUp = true;
+                                        break;
+                                    }
+                                    ignoreNextWakeUp = false; // В принцип это безполезноый код ибо уход в сон сделает тоже самое
                                     break;
                                 default:
                                     break;

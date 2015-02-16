@@ -1,14 +1,9 @@
-package ru.max314.util.threads;
+package ru.max314.an21utools.util.threads;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Безконечный выполнятель

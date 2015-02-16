@@ -1,14 +1,17 @@
 package ru.max314.an21utools;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import ru.max314.util.LogHelper;
-import ru.max314.util.tw.TWUtilDecorator;
+import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.tw.TWUtilDecorator;
 
 /**
  * Created by max on 28.10.2014.
@@ -34,7 +37,9 @@ public class AboutActivity extends Activity {
             stringBuilder.append(String.format("Версия приложения = %s \n", App.getInstance().getString(R.string.app_version)));
             stringBuilder.append(String.format("Помидоры можно прислать на max314.an21u@gmail.com \n\n"));
             if (TWUtilDecorator.isAvailable()){
-                stringBuilder.append(String.format("Устройство:ID %d(%s) \n", TWUtilDecorator.getCarDeviceID(),TWUtilDecorator.getCarDeviceString(TWUtilDecorator.getCarDeviceID())));
+                // Медленно
+                int id = TWUtilDecorator.getCarDeviceID();
+                stringBuilder.append(String.format("Устройство:ID %d(%s) \n", id ,TWUtilDecorator.getCarDeviceString(id)));
             }else {
                 stringBuilder.append(String.format("Устройство:TWUtil не доступно \n" ));
             }
@@ -45,6 +50,25 @@ public class AboutActivity extends Activity {
 //        stringBuilder.append(String.format("Root доступен = %s \n", RootTools.isRootAvailable()));
 //        stringBuilder.append(String.format("Busybox доступен = %s \n", RootTools.isBusyboxAvailable()));
         tv.setText(stringBuilder.toString());
+    }
 
+    BroadcastReceiver receiver;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter("com.example.Broadcast");
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+            }
+        };
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 }

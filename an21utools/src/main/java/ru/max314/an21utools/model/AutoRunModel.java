@@ -4,11 +4,15 @@ package ru.max314.an21utools.model;
 import java.util.List;
 import java.util.Observable;
 
+import ru.max314.an21utools.SleepProcessingThread;
+import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.tw.TWUtilDecorator;
+
 /**
  * Created by max on 28.10.2014.
  */
 public class AutoRunModel extends Observable {
-
+    private static LogHelper Log = new LogHelper(AutoRunModel.class);
     /**
      * Назваания адаптеров для виджета музыки
      */
@@ -47,6 +51,8 @@ public class AutoRunModel extends Observable {
       Показывать отладочные сообщения на виджетах
     */
     private boolean musicWidgetToast = false;
+
+    private SleepProcessingThread sleepProcessingThread;
 
 
 
@@ -249,6 +255,31 @@ public class AutoRunModel extends Observable {
         this.musicWidgetToast = musicWidgetToast;
         setChanged();
         this.notifyObservers();
+
+    }
+
+    /**
+     * Запустить слипер
+     */
+    public synchronized void startSleep(){
+        if (!TWUtilDecorator.isAvailable()){
+            Log.d("TWUtil unavaiable sleepn not started");
+            return;
+        }
+        if (sleepProcessingThread!=null)
+            return;
+        sleepProcessingThread = new SleepProcessingThread();
+        sleepProcessingThread.start();
+    }
+
+    /**
+     * остановить слипер
+     */
+    public synchronized void stopSleep(){
+        if (sleepProcessingThread==null)
+            return;
+        sleepProcessingThread.tryStop();
+        sleepProcessingThread=null;
 
     }
 

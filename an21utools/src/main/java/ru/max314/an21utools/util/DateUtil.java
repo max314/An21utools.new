@@ -1,4 +1,4 @@
-package ru.max314.util;
+package ru.max314.an21utools.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

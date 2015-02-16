@@ -1,17 +1,14 @@
 package ru.max314.an21utools.model;
 
-import android.content.Context;
-import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
 import java.util.ArrayList;
 
 import ru.max314.an21utools.App;
-import ru.max314.util.LogHelper;
-import ru.max314.util.SysUtils;
+import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.SysUtils;
 
 /**
  * Фабрика модели приложения
@@ -39,6 +36,8 @@ public final class ModelFactory {
             ModelFactory.model = model;
             Log.d("Create default model on create app");
         }
+        // модель готова запускаемся
+        ModelFactory.model.startSleep();
     }
 
     /**
@@ -70,7 +69,7 @@ public final class ModelFactory {
             }
             jsonObject.put("appinfo",jsonArray);
             String buffer = jsonObject.toString(4);
-            SysUtils.writeStringAsFile(App.getInstance(), buffer, AUTORUN_FILENAME);
+            SysUtils.writeStringAsFile(App.getInstance(), AUTORUN_FILENAME,  buffer);
             Log.d("model = \n"+buffer);
         } catch (JSONException e) {
             Log.e("Error saveAutoRunModel",e);
@@ -88,6 +87,8 @@ public final class ModelFactory {
         Log.d("loadAutoRunModel enter");
         try {
             String buffer = SysUtils.readFileAsString(App.getInstance(),AUTORUN_FILENAME);
+            if (buffer.length()==0)
+                throw new RuntimeException("Cannot load model file not found");
             JSONObject jsonObject = new JSONObject(buffer);
             AutoRunModel m = new AutoRunModel();
             m.setAppInfoList(new ArrayList<AppInfo>());

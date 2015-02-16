@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.*;
 import android.widget.*;
 
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,7 +15,7 @@ import ru.max314.an21utools.model.AppInfo;
 import ru.max314.an21utools.model.AutoRunModel;
 import ru.max314.an21utools.model.IndentActivityCodes;
 import ru.max314.an21utools.model.ModelFactory;
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Активити для запускаемых приложений
@@ -173,8 +170,8 @@ public class AutoRunActivity extends Activity implements Observer {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         ModelFactory.saveAutoRunModel();
     }
 

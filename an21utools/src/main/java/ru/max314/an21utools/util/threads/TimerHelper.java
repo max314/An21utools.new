@@ -1,10 +1,10 @@
-package ru.max314.util.threads;
+package ru.max314.an21utools.util.threads;
 
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Created by max on 16.12.2014.

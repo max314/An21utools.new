@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Created by max on 31.10.2014.

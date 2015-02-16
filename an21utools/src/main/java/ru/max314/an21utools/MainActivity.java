@@ -1,13 +1,11 @@
 package ru.max314.an21utools;
 
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TabHost;
 
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 public class MainActivity extends TabActivity {
     private static LogHelper Log = new LogHelper(MainActivity.class);

@@ -1,8 +1,7 @@
-package ru.max314.util;
+package ru.max314.an21utools.util;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import java.io.*;
 import java.util.ArrayList;

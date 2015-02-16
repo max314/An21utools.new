@@ -22,7 +22,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.model.ModelFactory;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Приложение
@@ -64,7 +65,7 @@ public class App extends Application {
         ACRA.init(this);
         LocalReportSender sender = new LocalReportSender(this);
         ACRA.getErrorReporter().addReportSender(sender);
-        self = this;
+        ModelFactory.getAutoRunModel(); // Запуститься если сервис не запустил
         Log.d("App onCreate start");
     }
 

@@ -1,0 +1,22 @@
+02-15 16:13:48.639 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=3 arg2=1 }
+55 ctreyl
+02-15 16:14:43.659 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=2 arg2=3 }
+02-15 16:14:43.849 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+02-15 16:14:44.039 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=2 arg2=3 }
+02-15 16:14:44.229 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=2 arg2=3 }
+02-15 16:14:44.439 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=2 arg2=3 }
+02-15 16:14:46.359 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=3 }
+30
+
+
+02-15 16:15:15.439 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=3 arg2=1 }
+32
+02-15 16:15:47.479 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=-1ms arg1=3 }
+30
+02-15 16:16:16.019 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+02-15 16:16:16.219 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+02-15 16:16:16.409 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+02-15 16:16:16.619 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+02-15 16:16:16.799 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=2 arg2=3 }
+2
+02-15 16:16:18.719 D/ru.max314.an21utools.util.tw.TWSleeper(5731): Handle message from TWutil: { what=514 when=0 arg1=3 }

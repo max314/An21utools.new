@@ -3,16 +3,13 @@ package ru.max314.an21utools;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import java.util.Date;
-
 import ru.max314.an21utools.model.AutoRunModel;
 import ru.max314.an21utools.model.ModelFactory;
-import ru.max314.util.LogHelper;
-import ru.max314.util.SysUtils;
+import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.SysUtils;
 
 /**
  * Created by max on 31.10.2014.

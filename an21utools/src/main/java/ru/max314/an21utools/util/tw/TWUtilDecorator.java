@@ -1,14 +1,8 @@
-package ru.max314.util.tw;
+package ru.max314.an21utools.util.tw;
 
 import android.tw.john.TWUtil;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Created by max on 14.02.2015.
@@ -17,7 +11,9 @@ import ru.max314.util.LogHelper;
  * будем делать по человечески
  */
 public class TWUtilDecorator {
-    private static final int TWU_CODE_GET_ID = 65521;
+    protected static final int TWU_CODE_GET_ID = 65521;
+    protected static final int TWU_CODE_SLEEP = 514;
+    protected static final int TWU_CODE_REQUEST_SHUTDOWN = 65289;
 
     static LogHelper Log = new LogHelper(TWUtilDecorator.class);
 
@@ -28,16 +24,29 @@ public class TWUtilDecorator {
         return twUtil;
     }
 
-    public void TWUtilDecorator(){
-        int result = twUtil.open(null);
+    public TWUtilDecorator(){
+        this(null);
+    }
+
+    public TWUtilDecorator(short[] shorts){
+        Log.d("TWUtilDecorator - enter");
+        twUtil = new TWUtil();
+        Log.d("twUtil = new TWUtil();");
+        int result = twUtil.open(shorts);
+        Log.d("twUtil.open()");
         if (result!=0)
             throw new RuntimeException("Ошибка открытия TWUtil. статус код:"+result);
         twUtil.start();
+        Log.d("twUtil.start");
+        Log.d("TWUtilDecorator - out");
     }
 
     public void end(){
+        Log.d("TWUtilDecorator.end() - enter");
         twUtil.stop();
         twUtil.close();
+        twUtil = null;
+        Log.d("TWUtilDecorator.end() - out");
     }
 
     /**

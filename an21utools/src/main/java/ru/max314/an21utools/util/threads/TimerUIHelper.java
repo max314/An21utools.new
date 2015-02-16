@@ -1,11 +1,11 @@
-package ru.max314.util.threads;
+package ru.max314.an21utools.util.threads;
 
 import android.os.Handler;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ru.max314.util.LogHelper;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Created by max on 21.12.2014.

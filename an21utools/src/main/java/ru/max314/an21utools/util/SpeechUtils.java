@@ -1,13 +1,12 @@
-package ru.max314.util;
+package ru.max314.an21utools.util;
 
 import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 
 import ru.max314.an21utools.App;
-import ru.max314.util.threads.TimerHelper;
+import ru.max314.an21utools.util.threads.TimerHelper;
 
 /**
  * Created by max on 10.01.2015.

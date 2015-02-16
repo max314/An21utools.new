@@ -1,4 +1,4 @@
-package ru.max314.util;
+package ru.max314.an21utools.util;
 
 /**
  * Created by max on 16.11.2014.

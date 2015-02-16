@@ -14,6 +14,7 @@ public class TWUtilDecorator {
     protected static final int TWU_CODE_GET_ID = 65521;
     protected static final int TWU_CODE_SLEEP = 514;
     protected static final int TWU_CODE_REQUEST_SHUTDOWN = 65289;
+    protected static final int TWU_CODE_REQUEST_SHUTDOWN1 = 40720;
 
     static LogHelper Log = new LogHelper(TWUtilDecorator.class);
 

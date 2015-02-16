@@ -21,7 +21,10 @@ public class TWSleeper extends TWUtilDecorator {
     Handler handler;
 
     public TWSleeper() {
-        super(new short[]{514});
+        super(new short[]{
+                514,
+                -24816 // Это шутдоун 40720
+        });
         Log.d("TWSleeper.ctor");
         // getTwUtil().write(514, 3); // нахуя  - хуйего знает
         // не нужно так делать
@@ -32,17 +35,23 @@ public class TWSleeper extends TWUtilDecorator {
                 Log.d("Handle message from TWutil: "+ dumpMessage(msg));
                 switch (msg.what){
                     case TWU_CODE_SLEEP:
-                        switch (msg.arg1){
-                            case 3:
-                                createAndSayIntent(BRD_TAG_SLEEP);
-                                break;
-                            default:
-                                break;
+                        if (msg.arg1 == 3){
+                            switch (msg.arg2){
+                                case 1: // Уход в слип
+                                    createAndSayIntent(BRD_TAG_SLEEP);
+                                    break;
+                                case 0:
+                                    createAndSayIntent(BRD_TAG_WAKEUP);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-
-
                         break;
                     case TWU_CODE_REQUEST_SHUTDOWN:
+                        createAndSayIntent(BRD_TAG_SHUTDOWN);
+                        break;
+                    case TWU_CODE_REQUEST_SHUTDOWN1:
                         createAndSayIntent(BRD_TAG_SHUTDOWN);
                         break;
                     default:

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,12 +31,19 @@ public class AboutActivity extends Activity {
                 startService(intent);
             }
         });
+        Button btnAboutTestWriteLog = (Button) findViewById(R.id.btAboutTestWriteLog);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Тестовая строка ушла в лог");
+            }
+        });
         TextView tv = (TextView) findViewById(R.id.textViewDebug);
         StringBuilder stringBuilder = null;
         try {
             stringBuilder = new StringBuilder();
             stringBuilder.append(String.format("Версия приложения = %s \n", App.getInstance().getString(R.string.app_version)));
-            stringBuilder.append(String.format("Помидоры можно прислать на max314.an21u@gmail.com \n\n"));
+            stringBuilder.append(String.format("Помидоры можно прислать на max314.an21u@gmail.com \n"));
             if (TWUtilDecorator.isAvailable()){
                 // Медленно
                 int id = TWUtilDecorator.getCarDeviceID();

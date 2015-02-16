@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.max314.an21utools.App;
+
 /**
  * Created by max on 31.10.2014.
  * всякие утилитки
@@ -114,6 +116,14 @@ public class SysUtils {
             }
         }
         return lists;
+    }
+
+    public static void createAndSayBrodcastIntent(String action){
+        Log.d("say broadcast:"+action);
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.setAction(action);
+        App.getInstance().sendBroadcast(intent);
     }
 
 

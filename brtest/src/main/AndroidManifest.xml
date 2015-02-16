@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.max314.brtest" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".App"
+        android:theme="@android:style/Theme.Holo.Light" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".MyResiver">
+            <intent-filter>
+                <action android:name="ru.max314.an21utools.sleep" />
+                <action android:name="ru.max314.an21utools.wakeup" />
+                <action android:name="ru.max314.an21utools.shutdown" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

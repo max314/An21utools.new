@@ -18,11 +18,31 @@
             android:layout_height="wrap_content"
             android:text="Тестовый запуск приложений"
             />
-    <Button android:id="@+id/btAboutTestWriteLog"
-            android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button android:id="@+id/btAboutTestWriteLog"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тестовый запуск приложений"
+            android:text="Запись в лог"
             />
+        <Button android:id="@+id/btAboutTestSendSleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Послать.sleep"
+            />
+        <Button android:id="@+id/btAboutTestSendWakeUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Послать.wakeup"
+            />
+        <Button android:id="@+id/btAboutTestSendShutdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Послать.shutdown"
+            />
+
+        </LinearLayout>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

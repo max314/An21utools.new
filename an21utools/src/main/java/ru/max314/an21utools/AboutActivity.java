@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.SysUtils;
+import ru.max314.an21utools.util.tw.TWSleeper;
 import ru.max314.an21utools.util.tw.TWUtilDecorator;
 
 /**
@@ -32,12 +34,34 @@ public class AboutActivity extends Activity {
             }
         });
         Button btnAboutTestWriteLog = (Button) findViewById(R.id.btAboutTestWriteLog);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnAboutTestWriteLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("Тестовая строка ушла в лог");
             }
         });
+        Button btAboutTestSendSleep = (Button) findViewById(R.id.btAboutTestSendSleep);
+        btAboutTestSendSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SysUtils.createAndSayBrodcastIntent(TWSleeper.BRD_TAG_SLEEP);
+            }
+        });
+        Button btAboutTestSendWakeUp = (Button) findViewById(R.id.btAboutTestSendWakeUp);
+        btAboutTestSendWakeUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SysUtils.createAndSayBrodcastIntent(TWSleeper.BRD_TAG_WAKEUP);
+            }
+        });
+        Button btAboutTestSendShutdown = (Button) findViewById(R.id.btAboutTestSendShutdown);
+        btAboutTestSendShutdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SysUtils.createAndSayBrodcastIntent(TWSleeper.BRD_TAG_SHUTDOWN);
+            }
+        });
+
         TextView tv = (TextView) findViewById(R.id.textViewDebug);
         StringBuilder stringBuilder = null;
         try {

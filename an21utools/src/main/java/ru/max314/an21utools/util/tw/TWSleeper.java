@@ -8,6 +8,7 @@ import android.os.Message;
 
 import ru.max314.an21utools.App;
 import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.SysUtils;
 
 /**
  * Created by max on 15.02.2015.
@@ -15,9 +16,9 @@ import ru.max314.an21utools.util.LogHelper;
 public class TWSleeper extends TWUtilDecorator {
     final static LogHelper Log = new LogHelper(TWSleeper.class);
     private static final String HANDLERR_TAG = "sleep_listener";
-    private static final String BRD_TAG_SLEEP = "ru.max314.an21utools.sleep";
-    private static final String BRD_TAG_WAKEUP = "ru.max314.an21utools.wakeup";
-    private static final String BRD_TAG_SHUTDOWN = "ru.max314.an21utools.shutdown";
+    public static final String BRD_TAG_SLEEP = "ru.max314.an21utools.sleep";
+    public static final String BRD_TAG_WAKEUP = "ru.max314.an21utools.wakeup";
+    public static final String BRD_TAG_SHUTDOWN = "ru.max314.an21utools.shutdown";
     Handler handler;
 
     public TWSleeper() {
@@ -43,12 +44,12 @@ public class TWSleeper extends TWUtilDecorator {
                         if (msg.arg1 == 3){
                             switch (msg.arg2){
                                 case 1: // Уход в слип
-                                    createAndSayIntent(BRD_TAG_SLEEP);
+                                    SysUtils.createAndSayBrodcastIntent(BRD_TAG_SLEEP);
                                     ignoreNextWakeUp = false; // просыпания без сна не бывает)
                                     break;
                                 case 0:
                                     if (!ignoreNextWakeUp){
-                                        createAndSayIntent(BRD_TAG_WAKEUP);
+                                        SysUtils.createAndSayBrodcastIntent(BRD_TAG_WAKEUP);
                                         ignoreNextWakeUp = true;
                                         break;
                                     }
@@ -59,11 +60,12 @@ public class TWSleeper extends TWUtilDecorator {
                             }
                         }
                         break;
-                    case TWU_CODE_REQUEST_SHUTDOWN:
-                        createAndSayIntent(BRD_TAG_SHUTDOWN);
-                        break;
+                    // not work
+//                    case TWU_CODE_REQUEST_SHUTDOWN:
+//                        SysUtils.createAndSayBrodcastIntent(BRD_TAG_SHUTDOWN);
+//                        break;
                     case TWU_CODE_REQUEST_SHUTDOWN1:
-                        createAndSayIntent(BRD_TAG_SHUTDOWN);
+                        SysUtils.createAndSayBrodcastIntent(BRD_TAG_SHUTDOWN);
                         break;
                     default:
                         break;
@@ -91,13 +93,6 @@ public class TWSleeper extends TWUtilDecorator {
         Log.d("TWSleeper.Listen handler");
     }
 
-    private void createAndSayIntent(String action){
-        Log.d("say broadcast:"+action);
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-        intent.setAction(action);
-        App.getInstance().sendBroadcast(intent);
-    }
 
     @Override
     public void end() {

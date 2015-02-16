@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":an21utools" />
+        <option name="GRADLE_PROJECT_PATH" value=":brtest" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -83,10 +83,8 @@
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 16 Platform" jdkType="Android SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="acra-4.5.0" level="project" />
-    <orderEntry type="library" exported="" name="log4j-1.2.17" level="project" />
   </component>
 </module>
 

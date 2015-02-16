@@ -2,6 +2,8 @@ package ru.max314.an21utools.util.tw;
 
 import android.tw.john.TWUtil;
 
+import java.lang.reflect.Type;
+
 import ru.max314.an21utools.util.LogHelper;
 
 /**
@@ -32,13 +34,10 @@ public class TWUtilDecorator {
     public TWUtilDecorator(short[] shorts){
         Log.d("TWUtilDecorator - enter");
         twUtil = new TWUtil();
-        Log.d("twUtil = new TWUtil();");
         int result = twUtil.open(shorts);
-        Log.d("twUtil.open()");
         if (result!=0)
             throw new RuntimeException("Ошибка открытия TWUtil. статус код:"+result);
         twUtil.start();
-        Log.d("twUtil.start");
         Log.d("TWUtilDecorator - out");
     }
 
@@ -56,12 +55,12 @@ public class TWUtilDecorator {
      */
     public static boolean isAvailable(){
         try {
-            TWUtil test = new TWUtil();
-            test = null;
+            Type type = TWUtil.class;
+            String name = type.getClass().getName();
             return true;
         }
         catch (Throwable ex){
-            Log.e("isAvaible()==false",ex);
+            Log.e("isAvailable()==false",ex);
             return false;
         }
     }

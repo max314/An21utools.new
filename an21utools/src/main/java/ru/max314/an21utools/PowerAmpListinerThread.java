@@ -8,16 +8,15 @@ import ru.max314.an21utools.util.SpeechUtils;
 import ru.max314.an21utools.util.tw.TWSleeper;
 
 /**
- * Created by max on 15.02.2015.
+ * Created by max on 17.02.2015.
  */
-public class SleepProcessingThread extends Thread {
-
-    static LogHelper Log = new LogHelper(SleepProcessingThread.class);
+public class PowerAmpListinerThread extends Thread {
+    static LogHelper Log = new LogHelper(PowerAmpListinerThread.class);
     private Handler handler;
 
 
-    public SleepProcessingThread() {
-        super("SleepProcessingThread");
+    public PowerAmpListinerThread() {
+        super("PowerAmpListinerThread");
     }
 
 
@@ -25,7 +24,7 @@ public class SleepProcessingThread extends Thread {
     public void run() {
         try {
             Log.d("run");
-            SpeechUtils.speech("Запуск потока отслеживание сна", false);
+            SpeechUtils.speech("Запуск потока отслеживание PowerAmp", false);
             Looper.prepare();
             handler = new Handler();
             up();
@@ -39,7 +38,7 @@ public class SleepProcessingThread extends Thread {
     /**
      * Остановить
      */
-    public synchronized void tryStop() {
+    public void tryStop() {
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -49,17 +48,18 @@ public class SleepProcessingThread extends Thread {
         });
     }
 
-    private TWSleeper twSleeper;
+    private PowerAmpProcessing powerAmpProcessing;
+
     private synchronized void up(){
-        if (twSleeper!=null)
+        if (powerAmpProcessing!=null)
             return;
-        twSleeper = new TWSleeper();
+        powerAmpProcessing = new PowerAmpProcessing(App.getInstance());
 
     }
     private synchronized void down(){
-        if (twSleeper!=null){
-            twSleeper.end();
-            twSleeper = null;
+        if (powerAmpProcessing!=null){
+            powerAmpProcessing.down();
+            powerAmpProcessing = null;
         }
     }
 

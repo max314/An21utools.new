@@ -4,6 +4,7 @@ package ru.max314.an21utools.model;
 import java.util.List;
 import java.util.Observable;
 
+import ru.max314.an21utools.PowerAmpListinerThread;
 import ru.max314.an21utools.SleepProcessingThread;
 import ru.max314.an21utools.util.LogHelper;
 import ru.max314.an21utools.util.tw.TWUtilDecorator;
@@ -53,6 +54,7 @@ public class AutoRunModel extends Observable {
     private boolean musicWidgetToast = false;
 
     private SleepProcessingThread sleepProcessingThread;
+    private PowerAmpListinerThread powerAmpListinerThread;
 
 
 
@@ -280,6 +282,18 @@ public class AutoRunModel extends Observable {
             return;
         sleepProcessingThread.tryStop();
         sleepProcessingThread=null;
+
+    }
+
+    public synchronized void startPowerAmpThread(){
+        if (powerAmpListinerThread==null)
+            powerAmpListinerThread = new PowerAmpListinerThread();
+        powerAmpListinerThread.start();
+    }
+    public synchronized void stopPowerAmpThread(){
+        if (powerAmpListinerThread!=null)
+            powerAmpListinerThread.tryStop();
+        powerAmpListinerThread = null;
 
     }
 

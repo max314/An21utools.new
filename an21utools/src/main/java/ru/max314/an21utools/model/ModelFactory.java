@@ -38,6 +38,7 @@ public final class ModelFactory {
         }
         // модель готова запускаемся
         ModelFactory.model.startSleep();
+        ModelFactory.model.startPowerAmpThread();
     }
 
     /**

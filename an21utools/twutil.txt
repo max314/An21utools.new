@@ -1,0 +1,127 @@
+
+
+18.02.2015
+
+изменение громкости через mcu
+контекст для работы с громкостью - 515
+
+изменение уровня громкости
+TWUtil.write(515, 1, value)
+value - нужное значение громкости
+
+
+mute
+TWUtil.write(515, 0, 0)
+
+
+завершение работы с громкостью
+TWUtil.write(515, 255)
+
+
+Как узнать текущую громкость через mcu - пока не знаю, но при изменение громкости через mcu изменяется сразу же системная громкость Android, может через нее можно узнать.
+
+проводил эксперименты:
+1. громкость на 7
+2. меняем через mcu громкость на 2
+3. крутим ручку громкости на один оборот вправо, видим тост с уровнем громкости 3
+
+
+
+Засыпание и шутдоун
+protected static final int TWU_CODE_SLEEP = 514;
+protected static final int TWU_CODE_REQUEST_SHUTDOWN1 = 40720;
+
+Установка
+        super(new short[]{
+                514,
+                -24816 // Это шутдоун 40720
+        });
+обработчик
+            // Для того чтобы не слать два раза бродкаст - мы проснулись
+            // заводим переменую
+            // Улучшим алгоритм мы проснулись приходит только если перед этим был фак ухода в сон
+            // Игнрорировать следующий приход 514 - 3.0
+            private boolean inSleepMode = false;
+
+            public void handleMessage(Message msg) {
+                Log.d("Handle message from TWutil: "+ dumpMessage(msg));
+                switch (msg.what){
+                    case TWU_CODE_SLEEP:
+                        if (msg.arg1 == 3){
+                            switch (msg.arg2){
+                                case 1: // Уход в слип
+                                    SysUtils.createAndSayBrodcastIntent(BRD_TAG_SLEEP);
+                                    inSleepMode = true; // просыпания без сна не бывает)
+                                    break;
+                                case 0:
+                                    if (inSleepMode){
+                                        SysUtils.createAndSayBrodcastIntent(BRD_TAG_WAKEUP);
+                                        inSleepMode = false;
+                                        break;
+                                    }
+                                    inSleepMode = false; // В принцип это безполезноый код ибо уход в сон сделает тоже самое
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case TWU_CODE_REQUEST_SHUTDOWN1:
+                        SysUtils.createAndSayBrodcastIntent(BRD_TAG_SHUTDOWN);
+                        break;
+                    default:
+                        break;
+                }
+
+Получение версии
+protected static final int TWU_CODE_GET_ID = 65521;
+Установка
+не требуеться
+код
+  int result = decorator.getTwUtil().write(TWU_CODE_GET_ID);
+
+
+
+
+Выполнение комманд от рута
+
+this.j.write(40730, 1, 0, "rm /system/app/" + paramString);
+
+
+Цвет подсветки
+        if(g.open(new short[] {272}) != 0)
+            finish();
+        g.start();
+        g.addHandler("ColorActivity", mHandler);
+        g.write(272, 0xff000000); -- белый????
+
+установка цвета
+    public void b(int i)
+    {
+        ColorActivity.b(f).write(272, 0xffffff & i);
+    }
+
+получение - мессаге
+    public void handleMessage(Message message)
+    {
+        try
+        {
+            byte abyte0[] = (byte[])(byte[])message.obj;
+            switch(message.what)
+            {
+            case 272:
+                int i = 0xff000000 | (0xff & abyte0[0]) << 16 | (0xff & abyte0[1]) << 8 | 0xff & abyte0[2];
+                ColorActivity.a(f).a(i);
+                return;
+            }
+        }
+        catch(Exception exception)
+        {
+            Log.e("ColorActivity", Log.getStackTraceString(exception));
+        }
+    }
+clean
+        g.removeHandler("ColorActivity");
+        g.stop();
+        g.close();
+

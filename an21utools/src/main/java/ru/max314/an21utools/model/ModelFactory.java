@@ -62,6 +62,7 @@ public final class ModelFactory {
             jsonObject.put("switchtohomescreen", model.isShitchToHomeScreen());
             jsonObject.put("musucprovider", model.getMusicProvederIndex());
             jsonObject.put("musucwidgettoast", model.isMusicWidgetToast());
+            jsonObject.put("PowerampResumeDelay", model.getPowerampResumeDelay());
             JSONArray jsonArray = new JSONArray();
             for (int i = 0; i < model.getAppInfoList().size(); i++) {
                 JSONObject item = new JSONObject();
@@ -100,6 +101,8 @@ public final class ModelFactory {
             m.setShitchToHomeScreen(jsonObject.optBoolean("switchtohomescreen",false));
             m.setMusicWidgetToast(jsonObject.optBoolean("musucwidgettoast",false));
             m.setMusicProvederIndex(jsonObject.optInt("musucprovider",0));
+            m.setPowerampResumeDelay(jsonObject.optInt("PowerampResumeDelay",2000));
+
             JSONArray jsonArray = jsonObject.getJSONArray("appinfo");
             for (int i = 0; i < jsonArray.length(); i++) {
                 m.addAppinfo(jsonArray.getJSONObject(i).getString("name"));

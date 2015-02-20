@@ -27,11 +27,16 @@ public class AutoRunModel extends Observable {
     /*
         Задержка после старта сервиса
      */
-    private int startDelay = 5;
+    private int startDelay = 100;
     /*
        Задержка после старта приложения
      */
-    private int applicationDelay = 3;
+    private int applicationDelay = 100;
+
+    /*
+       Задержка отправки сообщения RESUME poweramp
+     */
+    private int powerampResumeDelay = 2000;
 
     /*
        Список приложений
@@ -298,4 +303,16 @@ public class AutoRunModel extends Observable {
     }
 
 
+    public synchronized int getPowerampResumeDelay() {
+        return powerampResumeDelay;
+    }
+
+    public synchronized void setPowerampResumeDelay(int powerampResumeDelay) {
+        if (powerampResumeDelay<99){
+            powerampResumeDelay = 100;
+        }
+        this.powerampResumeDelay = powerampResumeDelay;
+        setChanged();
+        this.notifyObservers();
+    }
 }

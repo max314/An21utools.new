@@ -15,6 +15,7 @@ import ru.max314.an21utools.util.SysUtils;
  * Created by max on 31.10.2014.
  * Воновый сервис предполагаеться что это он будеть запускать приложения
  */
+/*
 public class BackgroudService extends IntentService  {
 
     public BackgroudService() {
@@ -116,3 +117,4 @@ public class BackgroudService extends IntentService  {
         notificationManager.cancel(notifyID);
     }
 }
+*/

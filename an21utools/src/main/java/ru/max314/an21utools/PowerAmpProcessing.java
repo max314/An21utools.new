@@ -46,11 +46,14 @@ public class PowerAmpProcessing {
      * Захватить контекст
      */
     private Context context;
+    private Handler handler;
 
 
     public PowerAmpProcessing(Context context) {
         Log.d("PowerAmpProcessing() ctor enter");
         this.context = context;
+
+        handler = new Handler();
 
 
         powerampReceiver = new BroadcastReceiver() {
@@ -113,7 +116,7 @@ public class PowerAmpProcessing {
         Log.d("doWakeUp(): needPlayOnWakeUp = " + needPlayOnWakeUp);
         if (needPlayOnWakeUp) {
             Log.d("doWakeUp(): poweramp delayead request to resume");
-            Handler handler = new Handler();
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

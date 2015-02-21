@@ -36,9 +36,6 @@ public final class ModelFactory {
             ModelFactory.model = model;
             Log.d("Create default model on create app");
         }
-        // модель готова запускаемся
-        ModelFactory.model.startSleep();
-        ModelFactory.model.startPowerAmpThread();
     }
 
     /**

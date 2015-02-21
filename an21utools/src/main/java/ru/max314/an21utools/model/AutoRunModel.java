@@ -38,6 +38,10 @@ public class AutoRunModel extends Observable {
      */
     private int powerampResumeDelay = 2000;
 
+    private boolean startSleepThread = true;
+
+    private boolean startPowerampThread = true;
+
     /*
        Список приложений
      */
@@ -57,10 +61,6 @@ public class AutoRunModel extends Observable {
       Показывать отладочные сообщения на виджетах
     */
     private boolean musicWidgetToast = false;
-
-    private SleepProcessingThread sleepProcessingThread;
-    private PowerAmpListinerThread powerAmpListinerThread;
-
 
 
     /**
@@ -265,44 +265,6 @@ public class AutoRunModel extends Observable {
 
     }
 
-    /**
-     * Запустить слипер
-     */
-    public synchronized void startSleep(){
-        if (!TWUtilDecorator.isAvailable()){
-            Log.d("TWUtil unavaiable sleepn not started");
-            return;
-        }
-        if (sleepProcessingThread!=null)
-            return;
-        sleepProcessingThread = new SleepProcessingThread();
-        sleepProcessingThread.start();
-    }
-
-    /**
-     * остановить слипер
-     */
-    public synchronized void stopSleep(){
-        if (sleepProcessingThread==null)
-            return;
-        sleepProcessingThread.tryStop();
-        sleepProcessingThread=null;
-
-    }
-
-    public synchronized void startPowerAmpThread(){
-        if (powerAmpListinerThread==null)
-            powerAmpListinerThread = new PowerAmpListinerThread();
-        powerAmpListinerThread.start();
-    }
-    public synchronized void stopPowerAmpThread(){
-        if (powerAmpListinerThread!=null)
-            powerAmpListinerThread.tryStop();
-        powerAmpListinerThread = null;
-
-    }
-
-
     public synchronized int getPowerampResumeDelay() {
         return powerampResumeDelay;
     }
@@ -314,5 +276,29 @@ public class AutoRunModel extends Observable {
         this.powerampResumeDelay = powerampResumeDelay;
         setChanged();
         this.notifyObservers();
+    }
+
+    /***
+     * Стартовать слип треад
+     * @return
+     */
+    public synchronized boolean isStartSleepThread() {
+        return startSleepThread;
+    }
+
+    /**
+     * Установить режим стартовать слип треад
+     * @param startSleepThread
+     */
+    public synchronized void setStartSleepThread(boolean startSleepThread) {
+        this.startSleepThread = startSleepThread;
+    }
+
+    public boolean isStartPowerampThread() {
+        return startPowerampThread;
+    }
+
+    public void setStartPowerampThread(boolean startPowerampThread) {
+        this.startPowerampThread = startPowerampThread;
     }
 }

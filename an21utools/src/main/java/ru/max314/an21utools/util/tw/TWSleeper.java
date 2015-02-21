@@ -5,6 +5,7 @@ package ru.max314.an21utools.util.tw;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.tw.john.TWUtil;
 
 import ru.max314.an21utools.App;
 import ru.max314.an21utools.util.LogHelper;
@@ -27,7 +28,7 @@ public class TWSleeper extends TWUtilDecorator {
                 -24816 // Это шутдоун 40720
         });
         Log.d("TWSleeper.ctor");
-        // getTwUtil().write(514, 3); // нахуя  - хуйего знает
+
         // не нужно так делать
 
         handler = new Handler(){
@@ -92,11 +93,14 @@ public class TWSleeper extends TWUtilDecorator {
         };
         getTwUtil().addHandler(HANDLERR_TAG, handler);
         Log.d("TWSleeper.Listen handler");
+        Log.d("Получим HD ID  для проверки");
+        int id = TWUtilDecorator.getCarDeviceID();
     }
 
 
     @Override
     public void end() {
+        Log.d("TWSleeper end()");
         getTwUtil().removeHandler(HANDLERR_TAG);
         super.end();
     }

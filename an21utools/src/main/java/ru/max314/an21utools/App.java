@@ -2,7 +2,11 @@ package ru.max314.an21utools;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.util.Log;
 
 import org.acra.ACRA;
 import org.acra.ACRAConstants;
@@ -30,7 +34,7 @@ import ru.max314.an21utools.util.LogHelper;
  * Created by max on 30.10.2014.
  */
 @ReportsCrashes(
-        formKey="",
+        formKey = "",
         mode = ReportingInteractionMode.TOAST,
         customReportContent = {
                 ReportField.USER_CRASH_DATE,
@@ -43,14 +47,20 @@ import ru.max314.an21utools.util.LogHelper;
                 ReportField.APP_VERSION_NAME,
                 ReportField.STACK_TRACE,
 //                ReportField.APPLICATION_LOG,
-                ReportField.LOGCAT },
+                ReportField.LOGCAT},
         mailTo = "max314.an21u@gmail.com",
         forceCloseDialogAfterToast = false, // optional, default false
         resToastText = R.string.crash_toast_text,
-        logcatArguments = { "-t", "300", "-v", "long" }
+        logcatArguments = {"-t", "300", "-v", "long"}
 )
 public class App extends Application {
     private static LogHelper Log = new LogHelper(App.class);
+
+    public App() {
+        super();
+        Log.d("App ctor *************************************************************************************************");
+
+    }
 
     static App self;
 
@@ -58,8 +68,21 @@ public class App extends Application {
         return self;
     }
 
+    public String getVersion(){
+        try {
+            PackageManager manager = this.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
+            return String.format("Name:%s Version:%s (%d)",info.packageName, info.versionName, info.versionCode);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("getVersion() error",e);
+        }
+        return "Unknown";
+    }
+
     @Override
     public void onCreate() {
+        Log.d("App onCreate start-------------------------------------------------------------------------");
+        Log.d(String.format("Версия приложения = %s ----------------------------------------------------------\n", this.getVersion()));
         super.onCreate();
         self = this;
         ACRA.init(this);
@@ -67,6 +90,19 @@ public class App extends Application {
         ACRA.getErrorReporter().addReportSender(sender);
         ModelFactory.getAutoRunModel(); // Запуститься если сервис не запустил
         Log.d("App onCreate start");
+        this.startService(new Intent(this, ControlService.class));
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        Log.d("App finalize() *************************************************************************************************");
+        super.finalize();
+    }
+
+    @Override
+    public void onTerminate() {
+        Log.d("App onTerminate() *************************************************************************************************");
+        super.onTerminate();
     }
 
     private class LocalReportSender implements ReportSender {

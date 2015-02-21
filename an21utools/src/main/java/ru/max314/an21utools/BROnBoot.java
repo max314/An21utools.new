@@ -16,7 +16,8 @@ public class BROnBoot extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("onReceive " + intent.getAction());
-        context.startService(new Intent(context, BackgroudService.class));
+        //context.startService(new Intent(context, BackgroudService.class));
+        context.startService(new Intent(context, ControlService.class).setAction(ControlService.CS_ACTION_STARTBOOT));
     }
 }
 

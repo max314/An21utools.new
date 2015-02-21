@@ -29,7 +29,7 @@ public class AboutActivity extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), BackgroudService.class);
+                Intent intent = new Intent(view.getContext(), ControlService.class).setAction(ControlService.CS_ACTION_STARTBOOT);
                 startService(intent);
             }
         });
@@ -66,7 +66,7 @@ public class AboutActivity extends Activity {
         StringBuilder stringBuilder = null;
         try {
             stringBuilder = new StringBuilder();
-            stringBuilder.append(String.format("Версия приложения = %s \n", App.getInstance().getString(R.string.app_version)));
+            stringBuilder.append(String.format("Версия приложения = %s \n", App.getInstance().getVersion()));
             stringBuilder.append(String.format("Помидоры можно прислать на max314.an21u@gmail.com \n"));
             if (TWUtilDecorator.isAvailable()){
                 // Медленно

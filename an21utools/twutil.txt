@@ -1,3 +1,24 @@
+20.02
+изменение громкости - 515, 1, value
+mute - 515, 0, 0
+unmute - 515, 0, 1
+
+По EQ вот что есть
+
+257, 1 - bass value 1 - 10???
+257, 2 - mid value 1 - 10???
+257, 3 - treeble value 1 - 10???
+257, 4 - sub value 1 - 10???
+257, 5 - loud value 1 - 10???
+257, 6 - fader value 1 - 10???
+257, 7 - ballance value 1 - 10???
+257, 8 - fcutbass value 1 - 10???
+257, 9 - fcutmid value 1 - 10???
+257, 10 - fcuttreeble value 1 - 10???
+257, 0, value - EQ presets (value)?
+257, 255 - Активация EQ
+
+
 
 
 18.02.2015

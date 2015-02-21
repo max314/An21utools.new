@@ -19,7 +19,6 @@ public class PowerAmpListinerThread extends Thread {
         super("PowerAmpListinerThread");
     }
 
-
     @Override
     public void run() {
         try {

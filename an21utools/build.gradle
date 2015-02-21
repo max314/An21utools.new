@@ -1,4 +1,25 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.moallemi.advanced-build-version'
+
+advancedVersioning {
+    nameOptions {
+        versionMajor 2
+        versionMinor 1
+        versionPatch versionCode
+    }
+//    codeOptions {
+//        versionCodeType org.moallemi.gradle.internal.VersionCodeType.AUTO_INCREMENT_ONE_STEP
+//        dependsOnTasks 'debug', 'release', 'assemble'
+//    }
+    outputOptions {
+        renameOutput true
+        nameFormat '$appName-$buildType-$versionName'
+    }
+}
+
+def appVersionName = advancedVersioning.versionName
+def appVersionCode = advancedVersioning.versionCode
+
 
 android {
     compileSdkVersion 16
@@ -8,8 +29,10 @@ android {
         applicationId "ru.max314.an21utools"
         minSdkVersion 16
         targetSdkVersion 16
-        versionCode 10
-        versionName "2.1.0"
+        versionCode advancedVersioning.versionCode
+        versionName advancedVersioning.versionName
+//        versionCode 10
+//        versionName "2.1.0.0"
     }
     buildTypes {
         release {
@@ -17,10 +40,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'log4j:log4j:1.2.17'
     compile 'ch.acra:acra:4.5.0'
+
 }
+
+

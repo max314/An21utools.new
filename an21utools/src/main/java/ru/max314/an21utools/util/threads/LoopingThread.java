@@ -2,6 +2,9 @@ package ru.max314.an21utools.util.threads;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+
+import java.util.concurrent.CountDownLatch;
 
 import ru.max314.an21utools.util.LogHelper;
 
@@ -11,6 +14,7 @@ import ru.max314.an21utools.util.LogHelper;
  */
 public class LoopingThread extends Thread {
     protected static LogHelper Log = new LogHelper(TimerHelper.class);
+    private CountDownLatch countDownLatch = new CountDownLatch(1);
     private Handler handler;
 
     public LoopingThread() {
@@ -23,6 +27,7 @@ public class LoopingThread extends Thread {
         try {
             Looper.prepare();
             handler = new Handler();
+            countDownLatch.countDown();
             Looper.loop();
         } catch (Exception e) {
             Log.e("Error ", e);
@@ -30,6 +35,11 @@ public class LoopingThread extends Thread {
     }
 
     public Handler getHandler() {
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            Log.e("await error ",e);
+        }
         return handler;
     }
 }

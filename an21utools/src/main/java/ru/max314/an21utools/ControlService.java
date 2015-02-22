@@ -17,7 +17,7 @@ import ru.max314.an21utools.util.tw.TWUtilDecorator;
 public class ControlService extends Service {
     private static LogHelper Log = new LogHelper(ControlService.class);
     public static final String CS_ACTION_STARTBOOT = "ru.max314.cs.startboot";
-    public static final String CS_ACTION_STOP = "ru.max314.cs.stop";
+//    public static final String CS_ACTION_STOP = "ru.max314.cs.stop";
 //    public static final String CS_ACTION_REFRESH = "ru.max314.cs.refresh";
 
     private static final int notif_id=13;
@@ -38,18 +38,14 @@ public class ControlService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (CS_ACTION_STOP.equals(intent.getAction())){
-            Log.d("onStartCommand action ="+CS_ACTION_STOP);
-            stopme();
-        }
-        else if (CS_ACTION_STARTBOOT.equals(intent.getAction()))
+        if (CS_ACTION_STARTBOOT.equals(intent.getAction()))
         {
             startFormBoot();
         }
         else {
             refresh();
         }
-        return super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
 
     private synchronized void stopme() {
@@ -57,8 +53,6 @@ public class ControlService extends Service {
         stopSleep();
         stopPowerAmpThread();
         stopForeground(true);
-        stopSelf();
-
     }
     private synchronized void startFormBoot() {
         startAutoRun();
@@ -198,5 +192,12 @@ public class ControlService extends Service {
 
         Notification notification = builder.build();
         return notification;
+    }
+
+    @Override
+    public void onDestroy() {
+        stopme();
+        stopForeground(true);
+        super.onDestroy();
     }
 }

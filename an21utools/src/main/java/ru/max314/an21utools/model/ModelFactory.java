@@ -60,6 +60,8 @@ public final class ModelFactory {
             jsonObject.put("musucprovider", model.getMusicProvederIndex());
             jsonObject.put("musucwidgettoast", model.isMusicWidgetToast());
             jsonObject.put("PowerampResumeDelay", model.getPowerampResumeDelay());
+            jsonObject.put("StartSleepThread", model.isStartSleepThread());
+            jsonObject.put("StartPowerampThread", model.isStartPowerampThread());
             JSONArray jsonArray = new JSONArray();
             for (int i = 0; i < model.getAppInfoList().size(); i++) {
                 JSONObject item = new JSONObject();
@@ -99,6 +101,8 @@ public final class ModelFactory {
             m.setMusicWidgetToast(jsonObject.optBoolean("musucwidgettoast",false));
             m.setMusicProvederIndex(jsonObject.optInt("musucprovider",0));
             m.setPowerampResumeDelay(jsonObject.optInt("PowerampResumeDelay",2000));
+            m.setStartSleepThread(jsonObject.optBoolean("StartSleepThread",true));
+            m.setStartPowerampThread(jsonObject.optBoolean("StartPowerampThread",true));
 
             JSONArray jsonArray = jsonObject.getJSONArray("appinfo");
             for (int i = 0; i < jsonArray.length(); i++) {

@@ -38,6 +38,14 @@ public class AboutActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("Тестовая строка ушла в лог");
+                try {
+                    Intent intent = new Intent();
+                    intent.setClassName("com.tw.service","com.tw.service.ReverseActivity");
+                    intent.setFlags(0x10000000);
+                    startActivity(intent);
+                } catch (Exception e) {
+                        Log.e("error launch revers activity",e);
+                }
             }
         });
         Button btAboutTestSendSleep = (Button) findViewById(R.id.btAboutTestSendSleep);

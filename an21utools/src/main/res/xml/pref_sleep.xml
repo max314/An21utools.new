@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Режим сна">
+        <CheckBoxPreference
+            android:key="@string/pk_startSleepThread"
+            android:defaultValue="true"
+            android:summary="@string/ps_startSleepThread"
+            android:title="@string/pt_startSleepThread">
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Интергация c PowerAmp">
+        <CheckBoxPreference
+            android:key="@string/pk_startPowerampThread"
+            android:summary="@string/ps_startPowerampThread"
+            android:title="@string/pt_startPowerampThread">
+        </CheckBoxPreference>
+        <EditTextPreference
+            android:key="@string/pk_powerampResumeDelay"
+            android:defaultValue="2500"
+            android:summary="@string/ps_powerampResumeDelay"
+            android:title="@string/pt_powerampResumeDelay">
+        </EditTextPreference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

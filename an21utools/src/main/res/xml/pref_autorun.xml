@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Автостарт">
+        <CheckBoxPreference
+            android:key="@string/pk_starting"
+            android:defaultValue="false"
+            android:summary="@string/ps_starting"
+            android:title="@string/pt_starting">
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Задержка">
+        <EditTextPreference
+            android:key="@string/pk_startDelay"
+            android:defaultValue="100"
+            android:numeric="integer"
+            android:summary="@string/ps_startDelay"
+            android:title="@string/pt_startDelay">
+        </EditTextPreference>
+        <EditTextPreference
+            android:key="@string/pk_applicationDelay"
+            android:defaultValue="100"
+            android:numeric="integer"
+            android:summary="@string/ps_applicationDelay"
+            android:title="@string/pt_applicationDelay">
+        </EditTextPreference>
+        <Preference android:title="Список приложений"
+            android:summary="Настрока списка и порядка запуска приложений"
+            >
+            <intent
+                android:targetClass="ru.max314.an21utools.AutoRunListActivity"
+                android:targetPackage="ru.max314.an21utools">
+            </intent>
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="При завершении">
+        <CheckBoxPreference
+            android:key="@string/pk_shitchToHomeScreen"
+            android:defaultValue="true"
+            android:summary="@string/ps_shitchToHomeScreen"
+            android:title="@string/pt_shitchToHomeScreen">
+        </CheckBoxPreference>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

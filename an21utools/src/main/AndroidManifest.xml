@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -33,7 +35,7 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".SelectApplicationActivity" />
 
-        <!--<service android:name=".BackgroudService" />-->
+        <!-- <service android:name=".BackgroudService" /> -->
 
         <receiver android:name=".BROnBoot" >
             <intent-filter>
@@ -46,6 +48,15 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".AutoRunListActivity"
+            android:label="Список приложений автозапуска" >
+        </activity>
     </application>
 
 </manifest>

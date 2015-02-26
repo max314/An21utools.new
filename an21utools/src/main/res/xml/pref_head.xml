@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <header
+        android:fragment="ru.max314.an21utools.AutorunPrefFragment"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:summary="Автозапуск"
+        android:title="Автостарт">
+    </header>
+    <header
+        android:fragment="ru.max314.an21utools.SleepPrefFragment"
+        android:icon="@android:drawable/ic_menu_view"
+        android:summary="Засыпание"
+        android:title="Настрока режима сна">
+    </header>
+    <!--<header-->
+        <!--android:icon="@android:drawable/ic_menu_view"-->
+        <!--android:summary="Список приложений автозапуска"-->
+        <!--android:title="Автозапуск приложения">-->
+        <!--<intent-->
+            <!--android:action="android.settings.DISPLAY_SETTINGS">-->
+        <!--</intent>-->
+    <!--</header>-->
+</preference-headers>

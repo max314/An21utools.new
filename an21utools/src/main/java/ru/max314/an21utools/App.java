@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.acra.ACRA;
@@ -26,6 +27,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import ru.max314.an21utools.model.AppModel;
 import ru.max314.an21utools.model.ModelFactory;
 import ru.max314.an21utools.util.LogHelper;
 
@@ -68,6 +70,13 @@ public class App extends Application {
         return self;
     }
 
+    AppModel model;
+    public synchronized AppModel getModel(){
+        if (model==null)
+            model = new AppModel(this);
+        return model;
+    }
+
     public String getVersion(){
         try {
             PackageManager manager = this.getPackageManager();
@@ -84,6 +93,9 @@ public class App extends Application {
         Log.d("App onCreate start-------------------------------------------------------------------------");
         Log.d(String.format("Версия приложения = %s ----------------------------------------------------------\n", this.getVersion()));
         super.onCreate();
+        PreferenceManager.setDefaultValues(this, R.xml.pref_autorun, false);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_sleep, false);
+
         self = this;
         ACRA.init(this);
         LocalReportSender sender = new LocalReportSender(this);

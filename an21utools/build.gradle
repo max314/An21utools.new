@@ -22,7 +22,7 @@ def appVersionCode = advancedVersioning.versionCode
 
 
 android {
-    compileSdkVersion 16
+    compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
@@ -43,13 +43,18 @@ android {
 
 }
 
+configurations {
+    provided
+}
 
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    provided files('ext_libs/twUtil.jar')
+
     compile 'log4j:log4j:1.2.17'
     compile 'ch.acra:acra:4.5.0'
-
+//    compile 'com.android.support:support-v4:21.0.3'
 }
 
 

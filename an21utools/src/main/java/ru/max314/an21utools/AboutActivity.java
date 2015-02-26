@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.maxmpz.poweramp.player.PowerampAPI;
+
 import ru.max314.an21utools.util.LogHelper;
 import ru.max314.an21utools.util.SysUtils;
 import ru.max314.an21utools.util.tw.TWSleeper;
@@ -39,9 +41,7 @@ public class AboutActivity extends Activity {
             public void onClick(View view) {
                 Log.d("Тестовая строка ушла в лог");
                 try {
-                    Intent intent = new Intent();
-                    intent.setClassName("com.tw.service","com.tw.service.ReverseActivity");
-                    intent.setFlags(0x10000000);
+                    Intent intent = new Intent(AboutActivity.this, SettingsActivity.class);
                     startActivity(intent);
                 } catch (Exception e) {
                         Log.e("error launch revers activity",e);

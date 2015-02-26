@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pk_starting">starting</string>
+    <string name="pt_starting">Активен</string>
+    <string name="ps_starting">Запускать при старте андроида</string>
+    <string name="pk_startDelay">startDelay</string>
+    <string name="pt_startDelay">При старте</string>
+    <string name="ps_startDelay">в милисекундах после старта андроида</string>
+    <string name="pk_applicationDelay">applicationDelay</string>
+    <string name="pt_applicationDelay">Между приложениями</string>
+    <string name="ps_applicationDelay">в милисекундах между приложениями</string>
+    <string name="pk_shitchToHomeScreen">shitchToHomeScreen</string>
+    <string name="pt_shitchToHomeScreen">Переключаться на домашний экран</string>
+    <string name="ps_shitchToHomeScreen">После запуска последнего приложения переключиться на домашний экран</string>
+
+    <string name="pk_startSleepThread">startSleepThread</string>
+    <string name="pt_startSleepThread">Запускать</string>
+    <string name="ps_startSleepThread">Запускать поток отслеживания режима сна</string>
+    <string name="pk_startPowerampThread">startPowerampThread</string>
+    <string name="pt_startPowerampThread">Активна</string>
+    <string name="ps_startPowerampThread">Останавливать при засыпании и запускать при выходе из сна PowerAmp</string>
+    <string name="pk_powerampResumeDelay">powerampResumeDelay</string>
+    <string name="pt_powerampResumeDelay">Задержка resume</string>
+    <string name="ps_powerampResumeDelay">При выходе из сна задержка посыла комманды resume</string>
+
+    <string name="pk_applictionList">applictionList</string>
+
+</resources>

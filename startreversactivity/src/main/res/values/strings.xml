@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Start Revers Activity</string>
+    <string name="title_activity_main">Start Revers Activity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>

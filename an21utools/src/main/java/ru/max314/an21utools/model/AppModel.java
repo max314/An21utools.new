@@ -58,7 +58,7 @@ public class AppModel extends TinyDB {
      * Задержка при выходе из сна перед посылкой RESUME poweramp-у
      * @return
      */
-    public synchronized int getPowerampResumeDelay() {
+    public int getPowerampResumeDelay() {
         return this.getInt(RID(R.string.pk_powerampResumeDelay));
     }
 
@@ -66,7 +66,7 @@ public class AppModel extends TinyDB {
      * Стартовать слип треад
      * @return
      */
-    public synchronized boolean isStartSleepThread() {
+    public boolean isStartSleepThread() {
         return this.getBoolean(RID(R.string.pk_startSleepThread));
     }
 
@@ -87,9 +87,4 @@ public class AppModel extends TinyDB {
     public void setAppList(ArrayList<String> list){
         putList(RID(R.string.pk_applictionList), list);
     }
-
-
-
-
-
 }

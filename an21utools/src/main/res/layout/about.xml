@@ -10,13 +10,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Вобщ0ем тут еще много напишут"
+            android:text="Это скорее тестовое окно, вся работа в службах"
             android:id="@+id/textView"
             android:layout_gravity="center"/>
     <Button android:id="@+id/AboutTest"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Тестовый запуск приложений"
+            android:text="Рестарт сервиса(после изменения настроек)"
             />
     <LinearLayout
         android:layout_width="fill_parent"

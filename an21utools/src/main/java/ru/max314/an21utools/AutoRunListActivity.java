@@ -27,9 +27,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import ru.max314.an21utools.model.AppInfo;
-import ru.max314.an21utools.model.AutoRunModel;
 import ru.max314.an21utools.model.IndentActivityCodes;
-import ru.max314.an21utools.model.ModelFactory;
 import ru.max314.an21utools.util.LogHelper;
 
 /**

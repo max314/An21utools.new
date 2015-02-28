@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/an21utools/an21utools.iml" filepath="$PROJECT_DIR$/an21utools/an21utools.iml" />
       <module fileurl="file://$PROJECT_DIR$/an21utools.new.iml" filepath="$PROJECT_DIR$/an21utools.new.iml" />
-      <module fileurl="file://$PROJECT_DIR$/an21utools.new.iml" filepath="$PROJECT_DIR$/an21utools.new.iml" />
       <module fileurl="file://$PROJECT_DIR$/brtest/brtest.iml" filepath="$PROJECT_DIR$/brtest/brtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/startreversactivity/startreversactivity.iml" filepath="$PROJECT_DIR$/startreversactivity/startreversactivity.iml" />
     </modules>
   </component>
 </project>

@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
 
-import ru.max314.an21utools.model.ModelFactory;
 import ru.max314.an21utools.util.LogHelper;
 import ru.max314.an21utools.util.tw.TWSleeper;
 
@@ -123,7 +122,7 @@ public class PowerAmpProcessing {
                     Log.d("doWakeUp(): poweramp request to resume ");
                     context.startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.RESUME)); // ставим на плай
                 }
-            }, ModelFactory.getAutoRunModel().getPowerampResumeDelay());
+            }, App.getInstance().getModel().getPowerampResumeDelay());
 
 
         }

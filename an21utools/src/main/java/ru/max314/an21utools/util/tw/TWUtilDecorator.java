@@ -88,8 +88,11 @@ public class TWUtilDecorator {
      */
     public static String getCarDeviceString(int id){
         IdToNamePair[] list = new IdToNamePair[]{
-                        new TWUtilDecorator().new IdToNamePair(7,"МоЁ"),
-                        new TWUtilDecorator().new IdToNamePair(17,"RedPower")};
+                        new TWUtilDecorator().new IdToNamePair(1,"Create"),
+                        new TWUtilDecorator().new IdToNamePair(3,"Anstar"),
+                        new TWUtilDecorator().new IdToNamePair(7,"МоЁ Waybo?"),
+                        new TWUtilDecorator().new IdToNamePair(17,"RedPower"),
+                        new TWUtilDecorator().new IdToNamePair(22,"Infidini")};
 
         for (IdToNamePair item : list){
             if (item.ID == id)

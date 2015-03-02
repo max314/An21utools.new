@@ -92,7 +92,8 @@ public class TWUtilDecorator {
                         new TWUtilDecorator().new IdToNamePair(3,"Anstar"),
                         new TWUtilDecorator().new IdToNamePair(7,"МоЁ Waybo?"),
                         new TWUtilDecorator().new IdToNamePair(17,"RedPower"),
-                        new TWUtilDecorator().new IdToNamePair(22,"Infidini")};
+                        new TWUtilDecorator().new IdToNamePair(22,"Infidini"),
+                        new TWUtilDecorator().new IdToNamePair(48,"Waybo")};
 
         for (IdToNamePair item : list){
             if (item.ID == id)

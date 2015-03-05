@@ -6,7 +6,7 @@ import android.app.Fragment;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceFragment;
 
-import ru.max314.an21utools.util.tw.PreferenceUtils;
+import ru.max314.an21utools.util.PreferenceUtils;
 
 
 /**

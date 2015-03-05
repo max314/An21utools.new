@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="GPS">
+        <CheckBoxPreference
+            android:key="@string/pk_startGpsThread"
+            android:defaultValue="true"
+            android:title="@string/pt_startGpsThread"
+            android:summary="@string/ps_startGpsThread"
+            >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:key="@string/pk_gpsAutoClear"
+            android:defaultValue="true"
+            android:title="@string/pt_GpsAutoClear"
+            android:summary="@string/ps_GpsAutoClear"
+            >
+        </CheckBoxPreference>
+        <EditTextPreference
+            android:key="@string/pk_gpsActivityShowTime"
+            android:defaultValue="60"
+            android:title="@string/pt_GpsActivityShowTime"
+            android:summary="@string/ps_GpsActivityShowTime"
+            >
+        </EditTextPreference>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

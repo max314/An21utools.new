@@ -4,5 +4,7 @@
     <style name="AppTheme" parent="@android:style/Theme.Holo">
         <!-- Customize your theme here. -->
     </style>
-
+    <style name="GPSTheme" parent="android:Theme.Dialog">
+        <item name="android:dialogTitle">50dip</item>
+    </style>
 </resources>

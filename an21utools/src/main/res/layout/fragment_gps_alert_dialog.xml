@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="4dp"
+    tools:context="ru.max314.an21utools.GpsAlertDialog">
+
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+    >
+
+        <TableRow>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:orientation="horizontal"
+                android:layout_margin="4dp"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пролемы с GPS"
+                android:textSize="20dp"
+                android:textColor="#FF0000"
+                />
+            <View
+                android:layout_marginLeft="4dp"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:background="#FF0000"/>
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/tvGpsMessage"
+                android:layout_width="270dp"
+                android:layout_height="200dp"
+                android:gravity="center"
+                android:text="В течении более 10 секунд не было полученно местоположение"
+                android:singleLine="false"
+                android:textSize="26dp"
+                android:layout_column="0"
+                />
+            <LinearLayout
+                android:layout_width="270dp"
+                android:layout_height="200dp"
+                android:layout_column="1"
+                android:orientation="vertical"
+                >
+                    <TextView
+                        android:id="@+id/tvGpsSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00.000"
+                        android:textSize="76dp"
+                        android:layout_gravity="right"
+                        />
+                    <TextView
+                        android:id="@+id/tvGpsLocLat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00.0000000"
+                        android:textSize="36dp"
+                        android:layout_gravity="right"
+                        />
+                    <TextView
+                        android:id="@+id/tvGpsLocLon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00.0000000"
+                        android:textSize="36dp"
+                        android:layout_gravity="right"
+                        />
+
+            </LinearLayout>
+
+        </TableRow>
+        <TableRow>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_span="2"
+                android:background="#c0c0c0"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+        <Button
+            android:id="@+id/btGpsClear"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_column="0"
+            android:text="Сброс AGPS\n"
+            android:gravity="center"
+            android:textSize="24dp"
+            />
+        <Button
+            android:id="@+id/btGpsCancel"
+            android:layout_height="100dp"
+            android:layout_width="250dp"
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="Закрыть\n "
+            android:textSize="24dp"
+            />
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

@@ -27,7 +27,6 @@ public class GPSUtils {
         } catch (Exception exception) {
             Log.e("clear AGPS", exception);
         }
-
     }
 
     /**

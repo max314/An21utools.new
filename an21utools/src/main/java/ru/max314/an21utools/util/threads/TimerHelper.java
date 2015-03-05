@@ -46,6 +46,7 @@ public class TimerHelper {
     public void stop(){
         if (timer!=null){
             timer.cancel();
+            timer.purge();
             timer = null;
         }
     }

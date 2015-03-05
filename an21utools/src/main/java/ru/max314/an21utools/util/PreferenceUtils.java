@@ -1,4 +1,4 @@
-package ru.max314.an21utools.util.tw;
+package ru.max314.an21utools.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

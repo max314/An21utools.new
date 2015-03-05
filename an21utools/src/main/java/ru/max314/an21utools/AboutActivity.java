@@ -6,14 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.maxmpz.poweramp.player.PowerampAPI;
 
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +54,7 @@ public class AboutActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("Тестовая строка ушла в лог");
+                startActivity(new Intent(getBaseContext(),GpsAlertDialog.class));
             }
         });
         Button btAboutTestSendSleep = (Button) findViewById(R.id.btAboutTestSendSleep);

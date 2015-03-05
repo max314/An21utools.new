@@ -8,6 +8,7 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.IBinder;
 
+import ru.max314.an21utools.gps.GPSProcessingThread;
 import ru.max314.an21utools.model.AppModel;
 import ru.max314.an21utools.util.LogHelper;
 import ru.max314.an21utools.util.SysUtils;
@@ -17,12 +18,13 @@ public class ControlService extends Service {
     private static LogHelper Log = new LogHelper(ControlService.class);
     public static final String CS_ACTION_STARTBOOT = "ru.max314.cs.startboot";
 //    public static final String CS_ACTION_STOP = "ru.max314.cs.stop";
-//    public static final String CS_ACTION_REFRESH = "ru.max314.cs.refresh";
+//    public static final String CS_ACTION_REFRESH = "ru.max314.cs.startThreads";
 
     private static final int notif_id = 13;
 
     private SleepProcessingThread sleepProcessingThread;
     private PowerAmpListinerThread powerAmpListinerThread;
+    private GPSProcessingThread gpsProcessingThread;
     private AppModel model;
 
     public ControlService() {
@@ -37,25 +39,29 @@ public class ControlService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("ControlService onStartCommand action(" + intent.getAction() + ")");
-        if (CS_ACTION_STARTBOOT.equals(intent.getAction())) {
-            startFormBoot();
-        } else {
-            refresh();
+        Log.d("ControlService onStartCommand enter ");
+        if (intent!=null){
+            Log.d("ControlService onStartCommand action(" + intent.getAction() + ")");
+            if (CS_ACTION_STARTBOOT.equals(intent.getAction())) {
+                startFormBoot();
+            };
         }
+
+        startThreads();
         return Service.START_STICKY;
     }
 
-    private void stopme() {
+    private synchronized void stopme() {
         // stop threads
         stopSleep();
         stopPowerAmpThread();
+        stopGpsThread();
         stopForeground(true);
     }
 
     private void startFormBoot() {
         startAutoRun();
-        refresh();
+        startThreads();
     }
 
     private void startAutoRun() {
@@ -121,19 +127,12 @@ public class ControlService extends Service {
         notificationManager.cancel(notifyID);
     }
 
-    private void refresh() {
-        Log.d("ControlService refresh()");
+    private synchronized void  startThreads() {
+        Log.d("ControlService startThreads()");
         startForeground(notif_id, createNotification("Служба прослушивание sleep"));
-        if (model.isStartSleepThread()) {
-            startSleep();
-        } else {
-            stopSleep();
-        }
-        if (model.isStartPowerampThread()) {
-            startPowerAmpThread();
-        } else {
-            stopPowerAmpThread();
-        }
+        startSleep();
+        startPowerAmpThread();
+        startGpsThread();
     }
 
     /**
@@ -186,6 +185,30 @@ public class ControlService extends Service {
         powerAmpListinerThread.tryStop();
         powerAmpListinerThread = null;
         Log.d("ControlService stopPowerAmpThread() - stoped");
+    }
+
+    private synchronized void startGpsThread() {
+        //if (!model.isStartGpsThread()) {
+        if (false) {
+            Log.d("ControlService StartGpsThread() - model.isStartGpsThread() = false exit");
+            return;
+        }
+
+        if (gpsProcessingThread != null)
+            return;
+        gpsProcessingThread = new GPSProcessingThread();
+        gpsProcessingThread.start();
+        Log.d("ControlService StartGpsThread() - started");
+    }
+
+
+    private synchronized void stopGpsThread() {
+        if (gpsProcessingThread == null) {
+            return;
+        }
+        gpsProcessingThread.tryStop();
+        gpsProcessingThread = null;
+        Log.d("ControlService stopGpsThread() - stoped");
     }
 
 

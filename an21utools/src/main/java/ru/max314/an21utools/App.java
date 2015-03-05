@@ -94,11 +94,12 @@ public class App extends Application {
         super.onCreate();
         PreferenceManager.setDefaultValues(this, R.xml.pref_autorun, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_sleep, false);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_gps, false);
 
         self = this;
-        ACRA.init(this);
-        LocalReportSender sender = new LocalReportSender(this);
-        ACRA.getErrorReporter().addReportSender(sender);
+//        ACRA.init(this);
+//        LocalReportSender sender = new LocalReportSender(this);
+//        ACRA.getErrorReporter().addReportSender(sender);
 
         Log.d("App onCreate start");
         this.startService(new Intent(this, ControlService.class));

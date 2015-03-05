@@ -4,21 +4,19 @@
     <header
         android:fragment="ru.max314.an21utools.AutorunPrefFragment"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:summary="Автозапуск"
-        android:title="Автостарт">
+        android:title="Автозапуск"
+        android:summary="запуск приложений при старте" >
     </header>
     <header
         android:fragment="ru.max314.an21utools.SleepPrefFragment"
         android:icon="@android:drawable/ic_menu_view"
-        android:summary="Засыпание"
-        android:title="Настрока режима сна">
+        android:title="Режим сна"
+        android:summary="sleep мод, управление poweramp">
     </header>
-    <!--<header-->
-        <!--android:icon="@android:drawable/ic_menu_view"-->
-        <!--android:summary="Список приложений автозапуска"-->
-        <!--android:title="Автозапуск приложения">-->
-        <!--<intent-->
-            <!--android:action="android.settings.DISPLAY_SETTINGS">-->
-        <!--</intent>-->
-    <!--</header>-->
+    <header
+        android:fragment="ru.max314.an21utools.GpsPrefFragment"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="GPS"
+        android:summary="слежение за GPS">
+    </header>
 </preference-headers>

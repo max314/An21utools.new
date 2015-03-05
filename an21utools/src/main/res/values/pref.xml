@@ -16,6 +16,7 @@
     <string name="pk_startSleepThread">startSleepThread</string>
     <string name="pt_startSleepThread">Запускать</string>
     <string name="ps_startSleepThread">Запускать поток отслеживания режима сна</string>
+
     <string name="pk_startPowerampThread">startPowerampThread</string>
     <string name="pt_startPowerampThread">Активна</string>
     <string name="ps_startPowerampThread">Останавливать при засыпании и запускать при выходе из сна PowerAmp</string>
@@ -24,5 +25,16 @@
     <string name="ps_powerampResumeDelay">При выходе из сна задержка посыла комманды resume</string>
 
     <string name="pk_applictionList">applictionList</string>
+
+    <string name="pk_startGpsThread">startGpsThread</string>
+    <string name="ps_startGpsThread">Запускать поток контроля работы GPS</string>
+    <string name="pt_startGpsThread">Запускать</string>
+
+    <string name="pk_gpsAutoClear">GpsAutoClear</string>
+    <string name="pt_GpsAutoClear">Автоматически запускать исправление</string>
+    <string name="ps_GpsAutoClear">вызвать функцию сброса автоматически без показа окна</string>
+    <string name="pk_gpsActivityShowTime">GpsActivityShowTime</string>
+    <string name="pt_GpsActivityShowTime">Время показа окна (секунды)</string>
+    <string name="ps_GpsActivityShowTime">время показа окна с проблемой после которого окно закроется в секундах</string>
 
 </resources>

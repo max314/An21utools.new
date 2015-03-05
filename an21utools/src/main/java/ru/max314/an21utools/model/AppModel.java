@@ -77,6 +77,28 @@ public class AppModel extends TinyDB {
     public boolean isStartPowerampThread() {
         return this.getBoolean(RID(R.string.pk_startPowerampThread));
     }
+    /**
+     * Запускать поток обслуживания GPS
+     * @return
+     */
+    public boolean isStartGpsThread() {
+        return this.getBoolean(RID(R.string.pk_startGpsThread));
+    }
+    /**
+     * Автоматически исправлять GPS
+     * @return
+     */
+    public boolean isGpsAutoClear() {
+        return this.getBoolean(RID(R.string.pk_gpsAutoClear));
+    }
+    /**
+     * Время показа окна с ошибкой GPS
+     * @return
+     */
+    public int getGpsActivityShowTime() {
+        return this.getInt(RID(R.string.pk_gpsActivityShowTime));
+    }
+
 
     public ArrayList<String> getAppList(){
         ArrayList<String> list = this.getList(RID(R.string.pk_applictionList));
@@ -84,6 +106,8 @@ public class AppModel extends TinyDB {
             list = new ArrayList<String>();
         return list;
     }
+
+
     public void setAppList(ArrayList<String> list){
         putList(RID(R.string.pk_applictionList), list);
     }

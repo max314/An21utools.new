@@ -48,13 +48,12 @@ public class GPSProcessingThread extends Thread {
         });
     }
 
-    private GPSProcessing gpsProcessing;
+    private GPSLogProcessing gpsProcessing;
 
     private synchronized void up() {
         if (gpsProcessing != null)
             return;
-        gpsProcessing = new GPSProcessing((android.location.LocationManager) App.getInstance().getSystemService(Context.LOCATION_SERVICE));
-        gpsProcessing.run();
+        gpsProcessing = new GPSLogProcessing((android.location.LocationManager) App.getInstance().getSystemService(Context.LOCATION_SERVICE));
     }
 
     private synchronized void down() {

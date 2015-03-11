@@ -188,8 +188,7 @@ public class ControlService extends Service {
     }
 
     private synchronized void startGpsThread() {
-        //if (!model.isStartGpsThread()) {
-        if (false) {
+        if (!model.isStartGpsThread() && true) {
             Log.d("ControlService StartGpsThread() - model.isStartGpsThread() = false exit");
             return;
         }

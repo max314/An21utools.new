@@ -20,7 +20,6 @@ advancedVersioning {
 def appVersionName = advancedVersioning.versionName
 def appVersionCode = advancedVersioning.versionCode
 
-
 android {
     compileSdkVersion 16
     buildToolsVersion "21.1.2"

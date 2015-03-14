@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
+import ru.max314.an21utools.gps.GPSLogProcessing;
 import ru.max314.an21utools.util.DisplayToast;
 import ru.max314.an21utools.util.LogHelper;
 import ru.max314.an21utools.util.SysUtils;
@@ -54,7 +55,8 @@ public class AboutActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("Тестовая строка ушла в лог");
-                startActivity(new Intent(getBaseContext(),GpsAlertDialog.class));
+                GPSLogProcessing.getSelf().flush();
+
             }
         });
         Button btAboutTestSendSleep = (Button) findViewById(R.id.btAboutTestSendSleep);

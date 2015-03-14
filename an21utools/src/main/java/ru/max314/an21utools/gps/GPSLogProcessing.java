@@ -1,6 +1,9 @@
 package ru.max314.an21utools.gps;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,6 +26,7 @@ import ru.max314.an21utools.App;
 import ru.max314.an21utools.GpsAlertDialog;
 import ru.max314.an21utools.util.GPSUtils;
 import ru.max314.an21utools.util.LogHelper;
+import ru.max314.an21utools.util.tw.TWSleeper;
 
 /**
  * Created by max on 04.03.2015.
@@ -102,6 +106,7 @@ public class GPSLogProcessing {
     private FlushRunner flushRunner = new FlushRunner();
 
     private final Handler flushHandler = new Handler();
+    BroadcastReceiver sleepReceiver;
 
     /**
      * последнне местоположение
@@ -109,17 +114,43 @@ public class GPSLogProcessing {
     private Location lastLocation;
 
     public GPSLogProcessing(LocationManager locationManager) {
+        self = this;
         this.locationManager = locationManager;
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, defaultLocListiner);
         locationManager.addGpsStatusListener(defaultGpsListiner);
         locationManager.addNmeaListener(nmeaListener);
         flushHandler.postDelayed(flushRunner, TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS));
+
+
+        sleepReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent != null) {
+                    String action = intent.getAction();
+                    Log.d("sleepIntent action=" + action);
+                    if (action.equals(TWSleeper.BRD_TAG_SLEEP)) {
+                        Log.d("flush on sleep");
+                        flush();
+                    }
+                } else {
+                    Log.e("sleepIntent: intent is null");
+                }
+            }
+        };
+        IntentFilter intentFilter = new IntentFilter();
+        // подписались на перезагрузку
+        intentFilter.addAction(TWSleeper.BRD_TAG_SLEEP);
+        intentFilter.addAction(TWSleeper.BRD_TAG_WAKEUP);
+        App.getInstance().registerReceiver(sleepReceiver, intentFilter);
+
+
     }
 
     public void stop() {
         locationManager.removeUpdates(defaultLocListiner);
         locationManager.removeGpsStatusListener(defaultGpsListiner);
         locationManager.removeNmeaListener(nmeaListener);
+        App.getInstance().unregisterReceiver(sleepReceiver);
     }
 
     public void flush() {
@@ -128,8 +159,8 @@ public class GPSLogProcessing {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm.llog");
-                String filename = df.format(new Date());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+                String filename = df.format(new Date())+".llog";
                 File file = new File(Environment.getExternalStorageDirectory() + File.separator + MY_SDFOLDER);
                 try {
                     if (!file.exists())
@@ -161,4 +192,11 @@ public class GPSLogProcessing {
         }
 
     }
+
+    //region никогда так не делать в рабочем приложеннии
+    private static GPSLogProcessing self;
+
+    public static GPSLogProcessing getSelf(){return self;}
+    //endregion
+
 }

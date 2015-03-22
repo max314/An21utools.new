@@ -1,16 +1,19 @@
 package ru.max314.an21utools.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.max314.an21utools.R;
+import ru.max314.an21utools.util.LogHelper;
 
 /**
  * Created by max on 26.02.2015.
  */
 public class AppModel extends TinyDB {
+    static LogHelper Log = new LogHelper(AppModel.class);
     Context context;
     public AppModel(Context appContext) {
         super(appContext);
@@ -43,7 +46,14 @@ public class AppModel extends TinyDB {
      * @return
      */
     public int getStartDelay() {
-        return this.getInt(RID(R.string.pk_startDelay));
+        try {
+            String value = this.getString(RID(R.string.pk_startDelay));
+            int res = Integer.parseInt(value);
+            return res;
+        } catch (NumberFormatException e) {
+            Log.e("Error getApplicationDelay",e);
+            return 100;
+        }
     }
 
     /***
@@ -51,7 +61,14 @@ public class AppModel extends TinyDB {
      * @return
      */
     public int getApplicationDelay() {
-        return this.getInt(RID(R.string.pk_applicationDelay));
+        try {
+            String value = this.getString(RID(R.string.pk_applicationDelay));
+            int res = Integer.parseInt(value);
+            return res;
+        } catch (NumberFormatException e) {
+            Log.e("Error getApplicationDelay",e);
+            return 100;
+        }
     }
 
     /**
@@ -59,7 +76,14 @@ public class AppModel extends TinyDB {
      * @return
      */
     public int getPowerampResumeDelay() {
-        return this.getInt(RID(R.string.pk_powerampResumeDelay));
+        try {
+            String value = this.getString(RID(R.string.pk_powerampResumeDelay));
+            int res = Integer.parseInt(value);
+            return res;
+        } catch (NumberFormatException e) {
+            Log.e("Error getPowerampResumeDelay",e);
+            return 3000;
+        }
     }
 
     /***
@@ -96,7 +120,14 @@ public class AppModel extends TinyDB {
      * @return
      */
     public int getGpsActivityShowTime() {
-        return this.getInt(RID(R.string.pk_gpsActivityShowTime));
+        try {
+            String value = this.getString(RID(R.string.pk_gpsActivityShowTime));
+            int res = Integer.parseInt(value);
+            return res;
+        } catch (NumberFormatException e) {
+            Log.e("Error getGpsActivityShowTime()",e);
+            return 3000;
+        }
     }
 
 

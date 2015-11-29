@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <!-- Check out the source code on http://github.com/vjt/canvas-speedometer -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+        <link rel="stylesheet" type="text/css" href="speedometer.css" media="screen" />
+
+        <script type="text/javascript" src="xcanvas.js"></script>
+        <script type="text/javascript" src="tbe.js"></script>
+
+        <script type="text/javascript" src="digitaldisplay.js"></script>
+        <script type="text/javascript" src="speedometer.js"></script>
+        <script type="text/javascript" src="themes/default.js"></script>
+
+        <script type="text/javascript" src="example.js"></script>
+        <script type="text/javascript" src="controls.js"></script>
+        <script type="text/javascript">
+          var speedometer;
+          // Explicit onready listener for modern browsers. If you use a JS framework,
+          // you should replace this code with your toolkit's "onReady" helpers (e.g.
+          // $(document).ready() on jQuery, Event.observe('dom:loaded') on prototype,
+          // and so on.
+          document.addEventListener ("DOMContentLoaded", function() {
+            document.removeEventListener ("DOMContentLoaded", arguments.callee, false);
+
+            // Check out configuration and API on GitHub Wiki:
+            // http://wiki.github.com/vjt/canvas-speedometer
+            speedometer = new Speedometer ('speedometer', {theme: 'default'});
+            speedometer.draw ();
+            speedometer.addEventListener ('speedometer:animateend', function () {
+              controls.start ();
+            });
+
+            var controls = new Controls ();
+            controls.start ();
+          }, false);
+        </script>
+    </head>
+    <body>
+        <div id="speedometer"></div>
+        <div id="controls">
+          Animate update:  <input type="button" id="update" value="start" /><br/>
+          Animate rescale: <input type="text" id="maxvalue" value="200" />
+                           <input type="button" id="rescale" value="rescale" /><br />
+          Operating mode:
+          <input type="radio" name="mode" id="incremental" checked="checked" /> incremental
+          <input type="radio" name="mode" id="random" /> random
+        </div>
+    </body>
+</html>

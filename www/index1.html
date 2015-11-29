@@ -1,0 +1,125 @@
+<html>
+<head>
+ <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+ <script src="./jquery.AshAlom.gaugeMeter-2.0.0.min.js"></script>
+
+<style>
+  .GaugeMeter{
+    Position:        Relative;
+    Text-Align:      Center;
+    Overflow:        Hidden;
+    Cursor:          Default;
+  }
+
+  .GaugeMeter SPAN,
+  .GaugeMeter B{
+    Margin:          0 23%;
+    Width:           5%;
+    Position:        Absolute;
+    Text-align:      Center;
+    Display:         Inline-Block;
+    Color:           RGBa(0,0,0,.8);
+    Font-Weight:     100;
+    Font-Family:     "Open Sans", Arial;
+    Overflow:        Hidden;
+    White-Space:     NoWrap;
+    Text-Overflow:   Ellipsis;
+  }
+  .GaugeMeter[data-style="Semi"] B{
+    Margin:          0 10%;
+    Width:           80%;
+  }
+
+  .GaugeMeter S,
+  .GaugeMeter U{
+    Text-Decoration: None;
+    Font-Size:       .49em;
+    Opacity:         .5;
+  }
+
+  .GaugeMeter B{
+    Color:           Black;
+    Font-Weight:     300;
+    Opacity:         .8;
+  }
+</style>
+</head>
+<body>
+<button id="ajax">ajax call</button>
+<button id="json">json</button>
+<button id="get">get</button> 
+<input id="speed" type="text"/>
+
+<div class="GaugeMeter" id="GaugeMeter_1" data-percent="10"></div>
+
+
+
+<script type="text/javascript">
+ 
+  $(".GaugeMeter").gaugeMeter();
+ 
+    $('#json').click(function(){ 
+         $.getJSON("http://192.168.26.101:8080/data").done(
+         function(data) {
+            alert(data);         
+          });   
+    });
+
+    $('#ajax').click(function(){ 
+         $.ajax({ 
+             type: "GET",           
+	     dataType: "jsonp",
+             url: "http://192.168.26.101:8080/data",
+             success: function(data){        
+                alert(data);
+             }
+         });
+    });
+
+      var success = function(data){
+            var html = [];
+  	console.log('succ');
+            /* parse JSON */
+            data = $.parseJSON(data);
+            /* loop through array */
+            $.each(data, function(index, d){            
+                html.push("Manufacturer : ", d.Manufacturer, ", ",
+                          "Sold : ", d.Sold, ", ", 
+                          "Month : ", d.Month, "<br>");
+            });
+
+          
+        };
+    $('#get').click(function(){ 
+/*
+		console.log('start');
+	   $.ajax({
+                    url: 'http://192.168.26.101:8080/data',
+                    dataType: 'jsonp',
+		   crossDomain: true,          
+	          cache:false, 
+	          success: success,
+	          error:function(jqXHR, textStatus, errorThrown){
+        	    alert(errorThrown);
+	          }
+        });
+*/
+$.ajax({
+    url: 'http://192.168.26.101:8080/data',
+    type: 'GET',
+    success: function(res) {
+  	console.log('succ');
+        var headline = res[0].lastRead;
+	var result = $.grep(res[0].pidInfos, function(e){ return e.pid == '0d,0'; });	
+        var speed = parseFloat(result[0].value);
+        $('#speed').val(speed);
+	$(".GaugeMeter").data('data-percent',50)
+        alert(speed);
+    }
+
+    });
+
+});
+
+</script></body>
+</html>

@@ -13,7 +13,7 @@ import ru.max314.an21utools.util.LogHelper;
  * Created by max on 21.12.2014.
  */
 public class LoopingThread extends Thread {
-    protected static LogHelper Log = new LogHelper(TimerHelper.class);
+    protected static LogHelper Log = new LogHelper(LoopingThread.class);
     private CountDownLatch countDownLatch = new CountDownLatch(1);
     private Handler handler;
 

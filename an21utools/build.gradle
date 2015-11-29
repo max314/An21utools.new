@@ -40,6 +40,13 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            aidl.srcDirs = ['src/main/java']
+        }
+    }
+
+
 }
 
 
@@ -49,6 +56,7 @@ dependencies {
 
     compile 'log4j:log4j:1.2.17'
     compile 'ch.acra:acra:4.5.0'
+    compile 'com.google.code.gson:gson:2.3'
 //    compile 'com.android.support:support-v4:21.0.3'
 }
 

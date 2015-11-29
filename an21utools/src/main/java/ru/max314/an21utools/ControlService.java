@@ -25,6 +25,7 @@ public class ControlService extends Service {
     private SleepProcessingThread sleepProcessingThread;
     private PowerAmpListinerThread powerAmpListinerThread;
     private GPSProcessingThread gpsProcessingThread;
+    private TorgueListinerThread torgueListinerThread;
     private AppModel model;
 
     public ControlService() {
@@ -56,7 +57,12 @@ public class ControlService extends Service {
         stopSleep();
         stopPowerAmpThread();
         stopGpsThread();
+        if (torgueListinerThread!=null){
+            torgueListinerThread.tryStop();
+        }
+
         stopForeground(true);
+
     }
 
     private void startFormBoot() {
@@ -133,6 +139,12 @@ public class ControlService extends Service {
         startSleep();
         startPowerAmpThread();
         startGpsThread();
+        if (torgueListinerThread==null){
+            torgueListinerThread = new TorgueListinerThread();
+            torgueListinerThread.start();
+        }
+
+
     }
 
     /**

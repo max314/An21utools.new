@@ -1,0 +1,13 @@
+div, form {
+  margin: 1em auto;
+}
+
+#speedometer {
+  width: 200px;
+  height: 200px;
+  border: 1px dotted red;
+}
+
+#controls {
+  width: 500px;
+}

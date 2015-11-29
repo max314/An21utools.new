@@ -1,0 +1,85 @@
+<html>
+<head>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+  $(document).ready(function(){
+
+    $("div").html("<b>Wow!</b> Such excitement...");
+    $("div b").append(document.createTextNode("!!!"))
+              .css("color", "red");
+
+  });
+  </script>
+
+</head>
+<body>
+<button id="ajax">ajax call</button>
+<button id="json">json</button>
+<button id="get">get</button> 
+<input id="speed" type="text"/>
+
+<script type="text/javascript">
+    $('#json').click(function(){ 
+         $.getJSON("http://192.168.26.101:8080/data").done(
+         function(data) {
+            alert(data);         
+          });   
+    });
+
+    $('#ajax').click(function(){ 
+         $.ajax({ 
+             type: "GET",           
+	     dataType: "jsonp",
+             url: "http://192.168.26.101:8080/data",
+             success: function(data){        
+                alert(data);
+             }
+         });
+    });
+
+      var success = function(data){
+            var html = [];
+  	console.log('succ');
+            /* parse JSON */
+            data = $.parseJSON(data);
+            /* loop through array */
+            $.each(data, function(index, d){            
+                html.push("Manufacturer : ", d.Manufacturer, ", ",
+                          "Sold : ", d.Sold, ", ", 
+                          "Month : ", d.Month, "<br>");
+            });
+
+          
+        };
+    $('#get').click(function(){ 
+/*
+		console.log('start');
+	   $.ajax({
+                    url: 'http://192.168.26.101:8080/data',
+                    dataType: 'jsonp',
+		   crossDomain: true,          
+	          cache:false, 
+	          success: success,
+	          error:function(jqXHR, textStatus, errorThrown){
+        	    alert(errorThrown);
+	          }
+        });
+*/
+$.ajax({
+    url: 'http://192.168.26.101:8080/data',
+    type: 'GET',
+    success: function(res) {
+  	console.log('succ');
+        var headline = res[0].lastRead;
+	var result = $.grep(res[0].pidInfos, function(e){ return e.pid == '0d,0'; });	
+        var speed = parseFloat(result[0].value);
+        $('#speed').val(speed);
+        alert(speed);
+    }
+
+    });
+
+});
+
+</script></body>
+</html>
